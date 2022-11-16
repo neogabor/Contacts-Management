@@ -1,9 +1,10 @@
 const express = require('express')
-const router = express.Router()
+const cors = require('cors')
+const router = express.Router().use(cors())
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const config = require('config')
-const { check, validationResult } = require('express-validator/check')
+const { check, validationResult } = require('express-validator')
 
 const User = require('../models/User')
 
@@ -28,7 +29,7 @@ router.post('/',
             let user = await User.findOne({ email })
 
             if(user) {
-                res.status(400).json({ message: 'User already exists' })
+                res.status(400).json({ msg: 'User already exists' })
             }
 
             user = new User({

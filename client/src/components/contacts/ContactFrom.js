@@ -5,6 +5,13 @@ export const ContactFrom = () => {
   const contactContext = useContext(ContactContext)
   const { addContact, updateContact, current, clearCurrent } = contactContext
 
+  const [contact, setContact] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    type: 'personal',
+  })
+
   useEffect(() => {
     if(current) {
         setContact(current)
@@ -17,13 +24,6 @@ export const ContactFrom = () => {
         })
     }
   }, [contactContext, current])
-
-  const [contact, setContact] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    type: 'personal',
-  })
 
   const { name, email, phone, type } = contact
 
