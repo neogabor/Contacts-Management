@@ -3,7 +3,6 @@ import axios from 'axios'
 import AuthContext from './authContext'
 import AuthReducer from './authReducer'
 import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAN_ERRORS } from '../types'
-import setAuthToken from '../../utils/setAuthToken'
 
 const PROXY_URL = "http://localhost:5000"
 
@@ -19,9 +18,6 @@ const AuthState = props => {
     const [state, dispatch] = useReducer(AuthReducer, initialState)
 
     const loadUser = async () => {
-        if(localStorage.token) {
-            setAuthToken(localStorage.token)
-        }
 
         try {
             const res = await axios.get(`${PROXY_URL}/api/auth`)
@@ -80,7 +76,9 @@ const AuthState = props => {
         }
     }
 
-    const logout = () => dispatch({ type: LOGOUT })
+    const logout = () => {
+        dispatch({ type: LOGOUT })
+    }
 
     const clearErrors = () => dispatch({ type: CLEAN_ERRORS })
 
