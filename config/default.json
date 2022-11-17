@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://contactkeeper:contactkeeper@clustertest.58lf0.mongodb.net/?retryWrites=true&w=majority",
+    "mongoURI": "add mongo connection here",
     "jwtSecret": "jwtsecret"
 }
